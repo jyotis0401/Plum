@@ -1,0 +1,11 @@
+
+fastapi
+uvicorn[standard]
+pydantic
+pytesseract
+Pillow
+spacy
+dateparser
+python-multipart
+pytest
+httpx
