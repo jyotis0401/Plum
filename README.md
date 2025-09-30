@@ -9,13 +9,14 @@ Build a backend service that parses natural language or document-based appointme
 This FastAPI backend service parses natural language appointment requests (e.g., "Book gynac next Tuesday at 2am") and converts them into structured scheduling data, applying normalization to ISO 8601 format and implementing confidence-based guardrails.
 
 **Pipeline:**
-**OCR/Text Extraction (ocr.py):** Extracts raw text and confidence score from image or text input.
+**OCR/Text Extraction (ocr.py):** pytesseract to extract raw text and confidence score from image or text input.
+
 Input (text):
 Book dentist next Friday at 3pm
 
-**Entity Extraction (entity_extraction.py)**: Uses spaCy and Regex to extract raw phrases (date_phrase, time_phrase, department).
+**Entity Extraction (entity_extraction.py)**: Uses spaCy to extract raw phrases (date_phrase, time_phrase, department).
 
-**Normalisation (normalization.py):** Converts raw phrases to final ISO format (YYYY-MM-DD and HH:MM).
+**Normalisation (normalization.py):** dateparser to convert raw phrases to final ISO format (YYYY-MM-DD and HH:MM).
 
 **Guardrails (guardrails.py):** Checks entity extraction and normalisation confidence. Fails if scores are too low.
 
@@ -30,24 +31,34 @@ Expected Output (JSON):
  },
  "status":"ok"
 }
+
 **RUN:**
+
 **Docker Commands:**
+
 **Build the Image:**
 docker build -t appointment-scheduler .
 
 **Run the Container (Exposing Port 8000):**
 docker run -p 8000:8000 appointment-scheduler
+
               OR
+              
 **Local Setup:**
+
 **Install System Dependencies:**
 Please make sure you have Tesseract OCR installed on your system (e.g., brew install tesseract on macOS or sudo apt install tesseract-ocr on Linux).
 
 **Activate Environment and Install Python Packages:**
+
 source venv/bin/activate #virtual environment
+
 pip install -r requirements.txt
+
 python -m spacy download en_core_web_sm
 
 **Run Server:**
+
 uvicorn app.main:app --reload 
 
 
