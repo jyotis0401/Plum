@@ -55,7 +55,8 @@ uvicorn app.main:app --reload
 
 Example 1 
 
-  **Request**: Book gynac next day at 2am
+  **Request**: Book gynac next day at 2am.
+  
 curl -X POST http://localhost:8000/parse \
   -F "input_type=text" \
   -F "text=Book gynac next day at 2am" \
@@ -66,6 +67,7 @@ curl -X POST http://localhost:8000/parse \
 Example 2: Guardrail Failure
 
   **Request**: Book eye doctor.
+  
   curl -X POST http://localhost:8000/parse \
   -F "input_type=text" \
   -F "text=Book eye doctor" \
