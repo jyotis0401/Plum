@@ -79,6 +79,7 @@ Example 2: Guardrail Failure
 Example 3: Image
 
   **Request**: sample_appointment.png
+  
   curl -X POST http://127.0.0.1:8000/parse \  -F "input_type=image" \
   -F "file=@sample_appointment.png" \
   -F "locale=Asia/Kolkata"
